@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Staff view of daily salon appointments and status controls.">
+  <title>Staff Calendar | Bella Vista Salon</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+</head>
+<body>
+<nav class="container-fluid">
+  <ul><li><strong>Bella Vista Salon · Staff</strong></li></ul>
+  <ul>
+    <li><a href="staff-calendar.html">Staff Calendar</a></li>
+    <li><a href="services-admin.html">Services Admin</a></li>
+    <li><a href="services.html">Client View</a></li>
+  </ul>
+</nav>
+<main class="container">
+
+  <header>
+    <h1>Staff Appointment Calendar</h1>
+    <p>Daily appointment schedule · Thursday, November 12, 2026</p>
+  </header>
+  <form>
+    <div class="grid">
+      <label for="calendar-date">Choose date
+        <input type="date" id="calendar-date" value="2026-11-12">
+      </label>
+      <label for="staff-filter">Staff member
+        <select id="staff-filter">
+          <option>All staff</option><option>Maria Santos</option><option>Alex Rivera</option>
+        </select>
+      </label>
+    </div>
+  </form>
+  <figure>
+    <table>
+      <thead><tr><th>Time</th><th>Client</th><th>Service</th><th>Staff</th><th>Status</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>9:00 AM</td><td>Sam Taylor</td><td>Manicure</td><td>Maria Santos</td><td>Confirmed</td><td><a href="#status">Update</a></td></tr>
+        <tr><td>10:00 AM</td><td>Jordan Lee</td><td>Signature Haircut</td><td>Alex Rivera</td><td>Booked</td><td><a href="#status">Update</a></td></tr>
+        <tr><td>11:30 AM</td><td>Casey Morgan</td><td>Facial Treatment</td><td>Maria Santos</td><td>Confirmed</td><td><a href="#status">Update</a></td></tr>
+      </tbody>
+    </table>
+  </figure>
+  <article id="status">
+    <h2>Update Appointment Status (Static Example)</h2>
+    <label for="status-select">New status</label>
+    <select id="status-select"><option>Confirmed</option><option>Completed</option><option>Canceled</option></select>
+    <button type="button" disabled>Save status (available in Flask version)</button>
+    <small>This static mockup displays the control only. Saving requires the Flask application.</small>
+  </article>
+
+</main>
+<footer class="container">
+  <small>Bella Vista Salon · Static HTML prototype · Sample information only</small>
+</footer>
+</body>
+</html>
