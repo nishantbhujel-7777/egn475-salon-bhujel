@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Staff page for maintaining salon services and sample pricing.">
+  <title>Services Admin | Bella Vista Salon</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+</head>
+<body>
+<nav class="container-fluid">
+  <ul><li><strong>Bella Vista Salon · Staff</strong></li></ul>
+  <ul>
+    <li><a href="staff-calendar.html">Staff Calendar</a></li>
+    <li><a href="services-admin.html">Services Admin</a></li>
+    <li><a href="services.html">Client View</a></li>
+  </ul>
+</nav>
+<main class="container">
+
+  <header>
+    <h1>Services Administration</h1>
+    <p>Review the salon services and sample prices.</p>
+  </header>
+  <article>
+    <h2>Add or Edit a Service</h2>
+    <form>
+      <label for="service-name">Service name
+        <input id="service-name" name="name" placeholder="e.g., Signature Haircut" required>
+      </label>
+      <label for="service-description">Description
+        <textarea id="service-description" name="description" placeholder="Describe the service"></textarea>
+      </label>
+      <div class="grid">
+        <label for="service-price">Price (USD)
+          <input id="service-price" type="number" min="0.01" step="0.01" placeholder="45.00" required>
+        </label>
+        <label for="service-duration">Duration (minutes)
+          <input id="service-duration" type="number" min="1" step="1" placeholder="45" required>
+        </label>
+      </div>
+      <button type="button" disabled>Save service (available in Flask version)</button>
+      <small>Static form only. Data is not saved in this prototype.</small>
+    </form>
+  </article>
+  <h2>Current Services</h2>
+  <table>
+    <thead><tr><th>Service</th><th>Price</th><th>Duration</th><th>Availability</th></tr></thead>
+    <tbody>
+      <tr><td>Signature Haircut</td><td>$45.00</td><td>45 min</td><td>Active</td></tr>
+      <tr><td>Hair Coloring</td><td>$95.00</td><td>120 min</td><td>Active</td></tr>
+      <tr><td>Manicure</td><td>$30.00</td><td>40 min</td><td>Active</td></tr>
+      <tr><td>Facial Treatment</td><td>$65.00</td><td>60 min</td><td>Active</td></tr>
+    </tbody>
+  </table>
+
+</main>
+<footer class="container">
+  <small>Bella Vista Salon · Static HTML prototype · Sample information only</small>
+</footer>
+</body>
+</html>
