@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Choose a salon service, appointment date, and available time.">
+  <title>Choose Date and Time | Bella Vista Salon</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+</head>
+<body>
+<nav class="container-fluid">
+  <ul><li><strong>Bella Vista Salon</strong></li></ul>
+  <ul>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="choose-time.html">Book</a></li>
+    <li><a href="my-appointments.html">My Appointments</a></li>
+  </ul>
+</nav>
+<main class="container">
+
+  <header>
+    <h1>Choose a Date &amp; Time</h1>
+    <p>Select a service, appointment date, and an available time.</p>
+  </header>
+  <form action="review-confirm.html" method="get">
+    <label for="service">Service
+      <select id="service" name="service" required>
+        <option value="">Select a service</option>
+        <option>Signature Haircut — $45.00</option>
+        <option>Hair Coloring — $95.00</option>
+        <option>Manicure — $30.00</option>
+        <option>Facial Treatment — $65.00</option>
+      </select>
+    </label>
+    <label for="appointment-date">Appointment date
+      <input type="date" id="appointment-date" name="date" value="2026-11-12" required>
+    </label>
+    <fieldset>
+      <legend>Available appointment times · November 12, 2026</legend>
+      <label><input type="radio" name="time" value="9:00 AM" required> 9:00 AM</label>
+      <label><input type="radio" name="time" value="10:00 AM"> 10:00 AM</label>
+      <label><input type="radio" name="time" value="11:30 AM"> 11:30 AM</label>
+      <label><input type="radio" name="time" value="2:00 PM"> 2:00 PM</label>
+      <small>10:30 AM is already booked and is not offered as an available time.</small>
+    </fieldset>
+    <div class="grid">
+      <a href="services.html" role="button" class="secondary">Back to Services</a>
+      <button type="submit">Continue to Review</button>
+    </div>
+  </form>
+
+</main>
+<footer class="container">
+  <small>Bella Vista Salon · Static HTML prototype · Sample information only</small>
+</footer>
+</body>
+</html>
