@@ -23,7 +23,8 @@
     <p>Review the salon services and sample prices.</p>
   </header>
   <article>
-    <h2>Add or Edit a Service</h2>
+    <h2>Add or Edit a Service (Prototype Only)</h2>
+    <p><small>Prototype-only form: these fields are examples and entered values are not saved.</small></p>
     <form>
       <label for="service-name">Service name
         <input id="service-name" name="name" placeholder="e.g., Signature Haircut" required>
@@ -39,8 +40,8 @@
           <input id="service-duration" type="number" min="1" step="1" placeholder="45" required>
         </label>
       </div>
-      <button type="button" disabled>Save service (available in Flask version)</button>
-      <small>Static form only. Data is not saved in this prototype.</small>
+      <button type="button" disabled>Save service (prototype only)</button>
+      <small>Saving service changes requires the Flask application.</small>
     </form>
   </article>
   <h2>Current Services</h2>

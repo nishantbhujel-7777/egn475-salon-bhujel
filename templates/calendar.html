@@ -1,0 +1,60 @@
+
+{% extends "base.html" %}
+
+{% block title %}Staff Calendar - Bella Vista Salon{% endblock %}
+
+{% block content %}
+
+<h1>Staff Appointment Calendar</h1>
+
+<p>
+    View scheduled customer appointments and their current status.
+</p>
+
+<article>
+    <h2>Upcoming Appointments</h2>
+
+    {% if appointments %}
+
+    <figure>
+        <table>
+            <thead>
+                <tr>
+                    <th>Client</th>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Staff</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.client }}</td>
+                    <td>{{ appointment.service }}</td>
+                    <td>{{ appointment.date }}</td>
+                    <td>{{ appointment.time }}</td>
+                    <td>{{ appointment.staff }}</td>
+                    <td>{{ appointment.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </figure>
+
+    {% else %}
+
+    <p>No appointments are currently scheduled.</p>
+
+    {% endif %}
+</article>
+
+<p>
+    <a href="{{ url_for('appointments') }}">
+        View Customer Appointment History
+    </a>
+</p>
+
+{% endblock %}

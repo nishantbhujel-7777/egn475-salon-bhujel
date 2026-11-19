@@ -1,0 +1,55 @@
+
+{% extends "base.html" %}
+
+{% block title %}Home - Bella Vista Salon{% endblock %}
+
+{% block content %}
+
+<section>
+    <h1>Welcome to Bella Vista Salon</h1>
+
+    <p>
+        Experience professional beauty and personal care
+        services in a comfortable and welcoming environment.
+    </p>
+
+    <a href="{{ url_for('services') }}" role="button">
+        Explore Our Services
+    </a>
+
+    <a href="{{ url_for('book') }}" role="button" class="secondary">
+        Book an Appointment
+    </a>
+</section>
+
+<hr>
+
+<section>
+    <h2>Our Featured Services</h2>
+
+    <div class="grid">
+        {% for service in services %}
+        <article>
+            <h3>{{ service.name }}</h3>
+
+            <p>{{ service.description }}</p>
+
+            <p>
+                <strong>Price:</strong>
+                ${{ "%.2f"|format(service.price_cents / 100) }}
+            </p>
+
+            <p>
+                <strong>Duration:</strong>
+                {{ service.duration }} minutes
+            </p>
+
+            <a href="{{ url_for('service_detail', service_id=service.id) }}">
+                View Details
+            </a>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Bella Vista Salon{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+</head>
+
+<body>
+
+    <nav class="container">
+        <ul>
+            <li><strong>Bella Vista Salon</strong></li>
+        </ul>
+
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('services') }}">Services</a></li>
+            <li><a href="{{ url_for('book') }}">Book Appointment</a></li>
+            <li><a href="{{ url_for('calendar') }}">Staff Calendar</a></li>
+            <li><a href="{{ url_for('appointments') }}">My Appointments</a></li>
+            <li><a href="{{ url_for('services_admin') }}">Services Admin</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="container">
+        <hr>
+        <p>&copy; 2026 Bella Vista Salon. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

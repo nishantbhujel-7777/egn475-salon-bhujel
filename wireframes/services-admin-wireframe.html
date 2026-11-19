@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services Administration - Wireframe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            color: black;
+        }
+        header, nav, section, footer {
+            border: 2px solid black;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .service {
+            border: 1px solid black;
+            padding: 15px;
+            margin: 12px 0;
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+        }
+        input, textarea {
+            display: block;
+            width: 90%;
+            max-width: 400px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+        button {
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid black;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Bella Vista Salon</h1>
+        <p>Services Administration – Wireframe</p>
+    </header>
+
+    <nav>
+        Staff Calendar | Services Administration
+    </nav>
+
+    <main>
+        <section>
+            <h2>Manage Salon Services</h2>
+            <p>Administrators can review and manage salon services.</p>
+
+            <div class="service">
+                <h3>Signature Haircut</h3>
+                <p>Price: $45</p>
+                <p>Duration: 45 minutes</p>
+                <button type="button">Edit Service</button>
+                <button type="button">Delete Service</button>
+            </div>
+
+            <div class="service">
+                <h3>Hair Coloring</h3>
+                <p>Price: $95</p>
+                <p>Duration: 90 minutes</p>
+                <button type="button">Edit Service</button>
+                <button type="button">Delete Service</button>
+            </div>
+
+            <h3>Add New Service</h3>
+
+            <form>
+                <label for="name">Service Name:</label>
+                <input type="text" id="name" placeholder="Enter service name">
+
+                <label for="description">Description:</label>
+                <textarea id="description" placeholder="Enter description"></textarea>
+
+                <label for="price">Price:</label>
+                <input type="number" id="price" placeholder="Enter price">
+
+                <label for="duration">Duration (minutes):</label>
+                <input type="number" id="duration" placeholder="Enter duration">
+
+                <button type="button">Save Service</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        Bella Vista Salon | Services Administration Wireframe
+    </footer>
+
+</body>
+</html>

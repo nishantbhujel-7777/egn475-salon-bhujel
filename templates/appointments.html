@@ -1,0 +1,58 @@
+
+{% extends "base.html" %}
+
+{% block title %}My Appointments - Bella Vista Salon{% endblock %}
+
+{% block content %}
+
+<h1>My Appointments</h1>
+
+<p>
+    View your appointment history and upcoming salon visits.
+</p>
+
+<article>
+    <h2>Appointment History</h2>
+
+    {% if appointments %}
+
+    <figure>
+        <table>
+            <thead>
+                <tr>
+                    <th>Appointment ID</th>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Staff Member</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.id }}</td>
+                    <td>{{ appointment.service }}</td>
+                    <td>{{ appointment.date }}</td>
+                    <td>{{ appointment.time }}</td>
+                    <td>{{ appointment.staff }}</td>
+                    <td>{{ appointment.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </figure>
+
+    {% else %}
+
+    <p>You do not have any appointments yet.</p>
+
+    {% endif %}
+</article>
+
+<a href="{{ url_for('book') }}" role="button">
+    Book a New Appointment
+</a>
+
+{% endblock %}

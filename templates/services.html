@@ -1,0 +1,60 @@
+
+{% extends "base.html" %}
+
+{% block title %}Our Services - Bella Vista Salon{% endblock %}
+
+{% block content %}
+
+<h1>Our Salon Services</h1>
+
+<p>
+    Explore our professional beauty and personal care services.
+    Choose a service to view more details.
+</p>
+
+<div class="grid">
+
+    {% for service in services %}
+
+    <article>
+        <header>
+            <strong>{{ service.category }}</strong>
+        </header>
+
+        <h3>{{ service.name }}</h3>
+
+        <p>{{ service.description }}</p>
+
+        <p>
+            <strong>Price:</strong>
+            ${{ "%.2f"|format(service.price_cents / 100) }}
+        </p>
+
+        <p>
+            <strong>Duration:</strong>
+            {{ service.duration }} minutes
+        </p>
+
+        <footer>
+            <a href="{{ url_for('service_detail', service_id=service.id) }}">
+                View Details
+            </a>
+
+            <a href="{{ url_for('book') }}" role="button">
+                Book Now
+            </a>
+        </footer>
+    </article>
+
+    {% else %}
+
+    <article>
+        <h3>No services available</h3>
+        <p>Please check back later for available salon services.</p>
+    </article>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

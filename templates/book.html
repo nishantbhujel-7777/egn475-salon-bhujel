@@ -1,0 +1,75 @@
+
+{% extends "base.html" %}
+
+{% block title %}Book Appointment - Bella Vista Salon{% endblock %}
+
+{% block content %}
+
+<h1>Book an Appointment</h1>
+
+<p>
+    Select your preferred service, date, and appointment time.
+</p>
+
+<form action="#" method="get">
+
+    <label for="service">Choose a Service</label>
+    <select id="service" name="service_id" required>
+        <option value="">Select a service</option>
+
+        {% for service in services %}
+        <option value="{{ service.id }}">
+            {{ service.name }} -
+            ${{ "%.2f"|format(service.price_cents / 100) }}
+        </option>
+        {% endfor %}
+
+    </select>
+
+    <label for="date">Choose Appointment Date</label>
+    <input
+        type="date"
+        id="date"
+        name="date"
+        required
+    >
+
+    <label for="time">Choose Appointment Time</label>
+    <select id="time" name="time" required>
+        <option value="">Select a time</option>
+        <option value="09:00">09:00 AM</option>
+        <option value="10:00">10:00 AM</option>
+        <option value="11:00">11:00 AM</option>
+        <option value="12:00">12:00 PM</option>
+        <option value="13:00">01:00 PM</option>
+        <option value="14:00">02:00 PM</option>
+        <option value="15:00">03:00 PM</option>
+        <option value="16:00">04:00 PM</option>
+    </select>
+
+    <label for="staff">Preferred Staff Member</label>
+    <select id="staff" name="staff">
+        <option value="">Any available staff</option>
+        <option value="Maria">Maria</option>
+        <option value="Jessica">Jessica</option>
+    </select>
+
+    <button type="submit" disabled>
+        Confirm Appointment (Coming in Week 4)
+    </button>
+
+</form>
+
+<p>
+    <a href="{{ url_for('services') }}">
+        Back to Services
+    </a>
+</p>
+
+<p>
+    <small>
+        Prototype only: Appointment information is not saved.
+    </small>
+</p>
+
+{% endblock %}
