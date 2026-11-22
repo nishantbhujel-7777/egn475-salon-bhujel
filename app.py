@@ -1,10 +1,34 @@
 
-from flask import Flask, render_template, abort
+import os
+import db
+
+from flask import (
+    Flask,
+    render_template,
+    abort,
+    request,
+    redirect,
+    url_for
+)
 
 app = Flask(__name__)
 
 # -----------------------------------
+# DATABASE CONFIGURATION
+# -----------------------------------
+
+app.config["DATABASE"] = os.path.join(
+    app.instance_path, "salon.sqlite"
+)
+
+os.makedirs(app.instance_path, exist_ok=True)
+
+db.init_app(app)
+
+
+# -----------------------------------
 # SAMPLE SALON SERVICES
+# Used by existing Week 3 pages
 # -----------------------------------
 
 SAMPLE_SERVICES = [
@@ -58,6 +82,7 @@ SAMPLE_SERVICES = [
     }
 ]
 
+
 # -----------------------------------
 # STAFF CALENDAR SAMPLE DATA
 # -----------------------------------
@@ -92,6 +117,7 @@ SAMPLE_CALENDAR = [
     }
 ]
 
+
 # -----------------------------------
 # CUSTOMER APPOINTMENT HISTORY
 # -----------------------------------
@@ -123,6 +149,7 @@ SAMPLE_APPOINTMENTS = [
     }
 ]
 
+
 # -----------------------------------
 # HOME PAGE
 # -----------------------------------
@@ -137,28 +164,43 @@ def home():
 
 # -----------------------------------
 # SERVICES LIST PAGE
+# READ FROM SQLITE DATABASE
 # -----------------------------------
 
 @app.route("/services")
 def services():
+
+    services = db.get_db().execute(
+        """
+        SELECT id, name, duration_minutes, price_cents
+        FROM services
+        WHERE active = 1
+        ORDER BY name
+        """
+    ).fetchall()
+
     return render_template(
         "services.html",
-        services=SAMPLE_SERVICES
+        services=services
     )
 
 
 # -----------------------------------
 # SERVICE DETAIL PAGE
+# READ ONE SERVICE FROM DATABASE
 # -----------------------------------
 
 @app.route("/services/<int:service_id>")
 def service_detail(service_id):
 
-    service = next(
-        (item for item in SAMPLE_SERVICES
-         if item["id"] == service_id),
-        None
-    )
+    service = db.get_db().execute(
+        """
+        SELECT id, name, duration_minutes, price_cents
+        FROM services
+        WHERE id = ? AND active = 1
+        """,
+        (service_id,)
+    ).fetchone()
 
     if service is None:
         abort(404)
@@ -171,6 +213,7 @@ def service_detail(service_id):
 
 # -----------------------------------
 # BOOK APPOINTMENT PAGE
+# Existing Week 3 functionality
 # -----------------------------------
 
 @app.route("/book")
@@ -215,6 +258,54 @@ def services_admin():
         "services-admin.html",
         services=SAMPLE_SERVICES
     )
+
+
+# -----------------------------------
+# ADD NEW SERVICE
+# GET = DISPLAY FORM
+# POST = SAVE TO DATABASE
+# -----------------------------------
+
+@app.route("/admin/services/new", methods=["GET", "POST"])
+def new_service():
+
+    if request.method == "POST":
+
+        name = request.form.get("name", "").strip()
+
+        duration = request.form.get("duration_minutes", "").strip()
+
+        price = request.form.get("price", "").strip()
+
+        # Refuse empty service names
+        if not name:
+            return render_template(
+                "new-service.html",
+                error="Service name cannot be empty."
+            )
+
+        # Convert dollars into cents
+        price_cents = round(float(price) * 100)
+
+        # Insert new service into SQLite
+        database = db.get_db()
+
+        database.execute(
+            """
+            INSERT INTO services
+            (name, duration_minutes, price_cents, active)
+            VALUES (?, ?, ?, ?)
+            """,
+            (name, int(duration), price_cents, 1)
+        )
+
+        # Save changes
+        database.commit()
+
+        # Redirect to services list
+        return redirect(url_for("services"))
+
+    return render_template("new-service.html")
 
 
 # -----------------------------------

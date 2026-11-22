@@ -20,11 +20,23 @@
 
         <ul>
             <li><a href="{{ url_for('home') }}">Home</a></li>
+
             <li><a href="{{ url_for('services') }}">Services</a></li>
+
             <li><a href="{{ url_for('book') }}">Book Appointment</a></li>
+
             <li><a href="{{ url_for('calendar') }}">Staff Calendar</a></li>
+
             <li><a href="{{ url_for('appointments') }}">My Appointments</a></li>
+
             <li><a href="{{ url_for('services_admin') }}">Services Admin</a></li>
+
+            <!-- Week 4: Add New Service -->
+            <li>
+                <a href="{{ url_for('new_service') }}">
+                    Add New Service
+                </a>
+            </li>
         </ul>
     </nav>
 
